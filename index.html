@@ -2,85 +2,119 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FOSTER | By Prince Bhalodiya</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>6-Month Countdown</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     body, html {
       height: 100%;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(-45deg, #6a11cb, #2575fc, #00c9ff, #92fe9d);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(270deg, #1a1a2e, #16213e, #0f3460);
+      background-size: 600% 600%;
+      animation: gradientShift 15s ease infinite;
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-direction: column;
-      color: #fff;
-      overflow: hidden;
+      color: #ffffff;
     }
 
-    @keyframes gradientBG {
+    @keyframes gradientShift {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
 
-    h1 {
-      font-size: 4rem;
-      text-shadow: 0 0 10px #fff, 0 0 20px #00c9ff;
+    .container {
+      text-align: center;
+      backdrop-filter: blur(10px);
     }
 
-    p {
+    .countdown {
+      font-size: 3rem;
+      text-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff;
+      margin-bottom: 1rem;
+    }
+
+    .loader-text {
       font-size: 1.5rem;
-      color: #ffeb3b;
+      color: #ffffff;
+      animation: pulse 2s infinite;
       margin-bottom: 2rem;
     }
 
-    button {
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
+
+    .glow-button {
       padding: 1rem 2rem;
       border: none;
-      border-radius: 50px;
-      background: #ffffff;
+      border-radius: 30px;
+      background: #00f0ff;
       color: #000;
-      font-weight: bold;
       font-size: 1rem;
+      font-weight: bold;
       cursor: pointer;
-      box-shadow: 0 0 20px #00c9ff;
+      box-shadow: 0 0 15px #00f0ff, 0 0 30px #00f0ff;
       transition: all 0.3s ease;
     }
 
-    button:hover {
-      background: #00c9ff;
-      color: #fff;
+    .glow-button:hover {
+      background: #00d1e0;
+      box-shadow: 0 0 20px #00f0ff, 0 0 40px #00f0ff;
     }
   </style>
 </head>
 <body>
-
-  <h1>FOSTER</h1>
-  <p>Created by Prince Bhalodiya</p>
-
-  <!-- Music toggle button -->
-  <button onclick="toggleMusic()">🎵 Play / Pause Music</button>
-
-  <!-- Online hosted audio from Pixabay (safe, license-free) -->
-  <audio id="bg-audio" autoplay loop>
-    <source src="https://cdn.pixabay.com/download/audio/2023/03/16/audio_8b87e1b01e.mp3?filename=cyberpunk-moonlight-146469.mp3" type="audio/mpeg">
-    Your browser does not support the audio tag.
-  </audio>
+  <div class="container">
+    <div class="countdown" id="countdown"></div>
+    <div class="loader-text">Preparing to launch...</div>
+    <button class="glow-button" onclick="toggleAudio()">Play Sound</button>
+    <audio id="launchAudio" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+  </div>
 
   <script>
-    const music = document.getElementById("bg-audio");
-    function toggleMusic() {
-      if (music.paused) {
-        music.play();
+    const targetDate = new Date();
+    targetDate.setMonth(targetDate.getMonth() + 6);
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = targetDate - now;
+
+      if (diff <= 0) {
+        document.getElementById("countdown").textContent = "Launching Now!";
+        return;
+      }
+
+      const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30.44));
+      const days = Math.floor((diff / (1000 * 60 * 60 * 24)) % 30.44);
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("countdown").textContent =
+        `${months}M ${days}D ${hours}H ${minutes}M ${seconds}S`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    function toggleAudio() {
+      const audio = document.getElementById("launchAudio");
+      if (audio.paused) {
+        audio.play();
       } else {
-        music.pause();
+        audio.pause();
       }
     }
   </script>
-
 </body>
 </html>
