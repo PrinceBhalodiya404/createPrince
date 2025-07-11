@@ -1,106 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Daily News</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f5f5f5;
-    }
-    header {
-      background-color: #1a1a1a;
-      color: white;
-      padding: 1rem;
-      text-align: center;
-    }
-    .news-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-      padding: 20px;
-    }
-    .news-card {
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-    .news-card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
-    .news-content {
-      padding: 15px;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-    }
-    .news-content h3 {
-      margin: 0 0 10px;
-      font-size: 18px;
-    }
-    .news-content p {
-      font-size: 14px;
-      color: #555;
-      flex-grow: 1;
-    }
-    .news-content a {
-      text-decoration: none;
-      color: #0066cc;
-      font-weight: bold;
-      margin-top: 10px;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Event Website</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <header>
-    <h1>Daily News Feed</h1>
-    <p>Auto-updating with the latest headlines</p>
-  </header>
+<body class="bg-white text-gray-800">
+  <!-- Hero Section -->
+  <section class="bg-blue-600 text-white py-20 text-center">
+    <h1 class="text-5xl font-bold mb-4">TechFuture 2025</h1>
+    <p class="text-xl">July 20–22, 2025 • San Francisco, CA</p>
+  </section>
 
-  <div class="news-container" id="newsContainer">
-    <!-- News articles will be injected here -->
-  </div>
+  <!-- About Section -->
+  <section class="py-16 px-6 max-w-4xl mx-auto text-center">
+    <h2 class="text-3xl font-semibold mb-4">About the Event</h2>
+    <p>TechFuture 2025 brings together the brightest minds in technology for 3 days of innovation, learning, and networking.</p>
+  </section>
 
-  <script>
-    const API_KEY = "YOUR_API_KEY_HERE"; // 🔑 Replace with your NewsAPI.org key
-    const NEWS_URL = `https://newsapi.org/v2/top-headlines?country=us&pageSize=12&apiKey=${API_KEY}`;
+  <!-- Schedule Section -->
+  <section class="bg-gray-100 py-16 px-6">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl font-semibold text-center mb-6">Schedule</h2>
+      <ul class="space-y-4">
+        <li><strong>Day 1:</strong> Keynotes & Networking</li>
+        <li><strong>Day 2:</strong> Workshops & Panels</li>
+        <li><strong>Day 3:</strong> Startup Demos & Closing</li>
+      </ul>
+    </div>
+  </section>
 
-    async function fetchNews() {
-      try {
-        const res = await fetch(NEWS_URL);
-        const data = await res.json();
-        const container = document.getElementById("newsContainer");
+  <!-- Speakers Section -->
+  <section class="py-16 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl font-semibold mb-6">Featured Speakers</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div>
+          <img src="https://via.placeholder.com/150" class="mx-auto rounded-full mb-2" alt="Speaker 1" />
+          <p>Jane Doe<br><small>CEO, FutureTech</small></p>
+        </div>
+        <div>
+          <img src="https://via.placeholder.com/150" class="mx-auto rounded-full mb-2" alt="Speaker 2" />
+          <p>John Smith<br><small>CTO, InnovateX</small></p>
+        </div>
+        <div>
+          <img src="https://via.placeholder.com/150" class="mx-auto rounded-full mb-2" alt="Speaker 3" />
+          <p>Mary Johnson<br><small>AI Researcher, OpenAI</small></p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        container.innerHTML = ""; // Clear previous content
+  <!-- Venue Section -->
+  <section class="bg-gray-100 py-16 px-6 text-center">
+    <h2 class="text-3xl font-semibold mb-4">Venue</h2>
+    <p>Downtown Conference Center, San Francisco, CA</p>
+    <div class="mt-6">
+      <iframe class="mx-auto" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.013887826173!2d-122.4194156846816!3d37.77492977975966!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085809c5e8f490f%3A0x79e7b05f71d53ae!2sSan%20Francisco%20City%20Hall!5e0!3m2!1sen!2sus!4v1596678411075!5m2!1sen!2sus" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </section>
 
-        data.articles.forEach(article => {
-          const card = document.createElement("div");
-          card.className = "news-card";
-          card.innerHTML = `
-            <img src="${article.urlToImage || 'https://via.placeholder.com/400x200'}" alt="News image">
-            <div class="news-content">
-              <h3>${article.title}</h3>
-              <p>${article.description || 'No description available.'}</p>
-              <a href="${article.url}" target="_blank">Read more</a>
-            </div>
-          `;
-          container.appendChild(card);
-        });
-      } catch (error) {
-        console.error("Error fetching news:", error);
-        document.getElementById("newsContainer").innerHTML = "<p>Failed to load news. Try again later.</p>";
-      }
-    }
+  <!-- Contact/RSVP Section -->
+  <section class="py-16 px-6">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="text-3xl font-semibold mb-4">RSVP</h2>
+      <form class="space-y-4">
+        <input type="text" placeholder="Your Name" class="w-full p-2 border border-gray-300 rounded" required>
+        <input type="email" placeholder="Your Email" class="w-full p-2 border border-gray-300 rounded" required>
+        <textarea placeholder="Message (optional)" class="w-full p-2 border border-gray-300 rounded"></textarea>
+        <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Submit</button>
+      </form>
+    </div>
+  </section>
 
-    fetchNews();
-  </script>
+  <!-- Footer -->
+  <footer class="bg-blue-600 text-white text-center py-6">
+    <p>&copy; 2025 TechFuture Conference. All rights reserved.</p>
+    <div class="mt-2 space-x-4">
+      <a href="#" class="underline">Twitter</a>
+      <a href="#" class="underline">LinkedIn</a>
+      <a href="#" class="underline">Instagram</a>
+    </div>
+  </footer>
 </body>
 </html>
