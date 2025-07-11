@@ -2,86 +2,124 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Event Website</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tasty Bites</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fffdf9;
+      color: #333;
+    }
+    header {
+      background: #ff6f61;
+      padding: 1em;
+      text-align: center;
+      color: white;
+    }
+    nav a {
+      margin: 0 1em;
+      color: white;
+      text-decoration: none;
+    }
+    .hero {
+      background: url('https://source.unsplash.com/1600x600/?food') no-repeat center center/cover;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2em;
+      font-weight: bold;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+    }
+    .section {
+      padding: 2em;
+      text-align: center;
+    }
+    .dishes {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5em;
+      margin-top: 2em;
+    }
+    .dish {
+      background: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .dish img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .dish h3 {
+      margin: 0.5em;
+    }
+    .footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 1em;
+      margin-top: 2em;
+    }
+    button {
+      padding: 0.6em 1.2em;
+      background: #ff6f61;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      margin-top: 1em;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #e85b50;
+    }
+  </style>
 </head>
-<body class="bg-white text-gray-800">
-  <!-- Hero Section -->
-  <section class="bg-blue-600 text-white py-20 text-center">
-    <h1 class="text-5xl font-bold mb-4">TechFuture 2025</h1>
-    <p class="text-xl">July 20–22, 2025 • San Francisco, CA</p>
-  </section>
+<body>
 
-  <!-- About Section -->
-  <section class="py-16 px-6 max-w-4xl mx-auto text-center">
-    <h2 class="text-3xl font-semibold mb-4">About the Event</h2>
-    <p>TechFuture 2025 brings together the brightest minds in technology for 3 days of innovation, learning, and networking.</p>
-  </section>
+<header>
+  <h1>Tasty Bites</h1>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Menu</a>
+    <a href="#">Contact</a>
+  </nav>
+</header>
 
-  <!-- Schedule Section -->
-  <section class="bg-gray-100 py-16 px-6">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-3xl font-semibold text-center mb-6">Schedule</h2>
-      <ul class="space-y-4">
-        <li><strong>Day 1:</strong> Keynotes & Networking</li>
-        <li><strong>Day 2:</strong> Workshops & Panels</li>
-        <li><strong>Day 3:</strong> Startup Demos & Closing</li>
-      </ul>
+<div class="hero">
+  Discover Delicious Flavors
+</div>
+
+<section class="section">
+  <h2>Our Popular Dishes</h2>
+  <div class="dishes">
+    <div class="dish">
+      <img src="https://source.unsplash.com/400x300/?pizza" alt="Pizza" />
+      <h3>Cheesy Pizza</h3>
+      <p>Hot, fresh and made with love.</p>
+      <button onclick="alert('Added to cart')">Order Now</button>
     </div>
-  </section>
-
-  <!-- Speakers Section -->
-  <section class="py-16 px-6">
-    <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-3xl font-semibold mb-6">Featured Speakers</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div>
-          <img src="https://via.placeholder.com/150" class="mx-auto rounded-full mb-2" alt="Speaker 1" />
-          <p>Jane Doe<br><small>CEO, FutureTech</small></p>
-        </div>
-        <div>
-          <img src="https://via.placeholder.com/150" class="mx-auto rounded-full mb-2" alt="Speaker 2" />
-          <p>John Smith<br><small>CTO, InnovateX</small></p>
-        </div>
-        <div>
-          <img src="https://via.placeholder.com/150" class="mx-auto rounded-full mb-2" alt="Speaker 3" />
-          <p>Mary Johnson<br><small>AI Researcher, OpenAI</small></p>
-        </div>
-      </div>
+    <div class="dish">
+      <img src="https://source.unsplash.com/400x300/?burger" alt="Burger" />
+      <h3>Juicy Burger</h3>
+      <p>Grilled to perfection with fresh ingredients.</p>
+      <button onclick="alert('Added to cart')">Order Now</button>
     </div>
-  </section>
-
-  <!-- Venue Section -->
-  <section class="bg-gray-100 py-16 px-6 text-center">
-    <h2 class="text-3xl font-semibold mb-4">Venue</h2>
-    <p>Downtown Conference Center, San Francisco, CA</p>
-    <div class="mt-6">
-      <iframe class="mx-auto" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.013887826173!2d-122.4194156846816!3d37.77492977975966!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085809c5e8f490f%3A0x79e7b05f71d53ae!2sSan%20Francisco%20City%20Hall!5e0!3m2!1sen!2sus!4v1596678411075!5m2!1sen!2sus" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    <div class="dish">
+      <img src="https://source.unsplash.com/400x300/?sushi" alt="Sushi" />
+      <h3>Fresh Sushi</h3>
+      <p>Authentic Japanese rolls and sashimi.</p>
+      <button onclick="alert('Added to cart')">Order Now</button>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Contact/RSVP Section -->
-  <section class="py-16 px-6">
-    <div class="max-w-2xl mx-auto text-center">
-      <h2 class="text-3xl font-semibold mb-4">RSVP</h2>
-      <form class="space-y-4">
-        <input type="text" placeholder="Your Name" class="w-full p-2 border border-gray-300 rounded" required>
-        <input type="email" placeholder="Your Email" class="w-full p-2 border border-gray-300 rounded" required>
-        <textarea placeholder="Message (optional)" class="w-full p-2 border border-gray-300 rounded"></textarea>
-        <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Submit</button>
-      </form>
-    </div>
-  </section>
+<footer class="footer">
+  &copy; 2025 Tasty Bites. All rights reserved.
+</footer>
 
-  <!-- Footer -->
-  <footer class="bg-blue-600 text-white text-center py-6">
-    <p>&copy; 2025 TechFuture Conference. All rights reserved.</p>
-    <div class="mt-2 space-x-4">
-      <a href="#" class="underline">Twitter</a>
-      <a href="#" class="underline">LinkedIn</a>
-      <a href="#" class="underline">Instagram</a>
-    </div>
-  </footer>
 </body>
 </html>
