@@ -1,167 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ChromaPulse - Digital Art Studio</title>
+  <meta charset="UTF-8">
+  <title>2-Person Chat</title>
   <style>
-    /* Reset and base styles */
-    * {
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      color: white;
-      background: linear-gradient(135deg, #6e00ff, #ff00c8, #00e0ff);
-      background-size: 400% 400%;
-      animation: gradientShift 15s ease infinite;
-      scroll-behavior: smooth;
+    .chat-container {
+      max-width: 600px;
+      margin: 30px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
-
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    section {
-      padding: 100px 20px;
-      text-align: center;
-    }
-
-    header {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
-    h1 {
-      font-size: 4rem;
-      animation: fadeIn 2s ease-out forwards;
-    }
-
-    h2 {
-      font-size: 2rem;
-      margin-top: 20px;
-      color: #ffe3fc;
-      animation: fadeInUp 2.5s ease-out forwards;
-    }
-
-    p {
-      max-width: 700px;
-      margin: 20px auto;
-      font-size: 1.2rem;
-      line-height: 1.6;
-      color: #f0f0f0;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 15px 30px;
-      background: #fff;
-      color: #6e00ff;
-      font-weight: bold;
-      border: none;
-      border-radius: 30px;
-      margin-top: 30px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      animation: fadeIn 3s ease-out forwards;
-    }
-
-    .btn:hover {
-      transform: scale(1.1);
-      background: #ff00c8;
-      color: white;
-    }
-
-    .section-title {
-      font-size: 2.5rem;
+    .messages {
+      border: 1px solid #ccc;
+      padding: 10px;
+      height: 300px;
+      overflow-y: auto;
       margin-bottom: 20px;
     }
-
-    footer {
-      background: rgba(255,255,255,0.1);
-      padding: 30px;
-      font-size: 0.9rem;
+    .message {
+      margin: 5px 0;
+      padding: 5px 10px;
+      border-radius: 5px;
+      position: relative;
     }
-
-    @keyframes fadeIn {
-      0% { opacity: 0; transform: translateY(-20px); }
-      100% { opacity: 1; transform: translateY(0); }
+    .user1 {
+      background-color: #d1e7dd;
+      text-align: left;
     }
-
-    @keyframes fadeInUp {
-      0% { opacity: 0; transform: translateY(40px); }
-      100% { opacity: 1; transform: translateY(0); }
+    .user2 {
+      background-color: #cfe2ff;
+      text-align: right;
     }
-
-    /* Scroll animation (using JS) */
-    .animate {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 1s ease-out;
+    .delete-btn {
+      position: absolute;
+      top: 2px;
+      right: 5px;
+      background: red;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      padding: 2px 5px;
+      font-size: 12px;
+      cursor: pointer;
     }
-    .animate.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .input-area {
+      display: flex;
+      gap: 10px;
     }
-
-    @media (max-width: 600px) {
-      h1 { font-size: 2.5rem; }
-      h2 { font-size: 1.5rem; }
-      .section-title { font-size: 2rem; }
+    input[type="text"] {
+      flex: 1;
+      padding: 10px;
+      font-size: 16px;
+    }
+    select, button {
+      padding: 10px;
+      font-size: 16px;
     }
   </style>
 </head>
 <body>
+  <div class="chat-container">
+    <h2>2-Person Chat</h2>
+    <div class="messages" id="messages"></div>
 
-  <header>
-    <h1>ChromaPulse</h1>
-    <h2>Digital Art & Motion Studio</h2>
-    <a href="#about" class="btn">Discover More</a>
-  </header>
-
-  <section id="about" class="animate">
-    <h3 class="section-title">About Us</h3>
-    <p>
-      We’re a creative studio that brings color and motion to life. Through bold design, animation, and immersive experiences, we help brands and creators stand out in a noisy world.
-    </p>
-  </section>
-
-  <section id="services" class="animate">
-    <h3 class="section-title">What We Do</h3>
-    <p>
-      From animated short films to brand explainer videos, visual effects, and vibrant UI motion — we do it all. Our colorful style is our signature.
-    </p>
-  </section>
-
-  <section id="contact" class="animate">
-    <h3 class="section-title">Let’s Connect</h3>
-    <p>
-      Want to bring your ideas to life with color and motion? Reach out to us at <strong>hello@chromapulse.studio</strong>.
-    </p>
-  </section>
-
-  <footer>
-    &copy; 2025 ChromaPulse Studio. Made with 💖 and gradients.
-  </footer>
+    <div class="input-area">
+      <select id="user">
+        <option value="user1">User 1</option>
+        <option value="user2">User 2</option>
+      </select>
+      <input type="text" id="messageInput" placeholder="Type a message..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
 
   <script>
-    // Scroll animation
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.2 });
+    const messagesDiv = document.getElementById('messages');
 
-    document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+    function sendMessage() {
+      const user = document.getElementById('user').value;
+      const textInput = document.getElementById('messageInput');
+      const text = textInput.value.trim();
+      if (!text) return;
+
+      const msgDiv = document.createElement('div');
+      msgDiv.className = `message ${user}`;
+      msgDiv.innerHTML = `
+        ${text}
+        <button class="delete-btn" onclick="this.parentElement.remove()">X</button>
+      `;
+      messagesDiv.appendChild(msgDiv);
+      textInput.value = '';
+      messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
   </script>
 </body>
 </html>
